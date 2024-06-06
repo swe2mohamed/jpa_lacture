@@ -46,4 +46,13 @@ public class Student {
         this.status = true;
         this.createDate = LocalDateTime.now();
     }
+
+    public Student(String firstName, String lastName, String email, Address address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = address;
+        this.status = true;
+        this.createDate = LocalDateTime.now();
+    }
 }

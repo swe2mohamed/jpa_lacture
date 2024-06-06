@@ -21,7 +21,7 @@ public class Address {
     private String street;
 
     @Setter
-    @Column
+    @Column(nullable = false)
     private String city;
 
     @Setter

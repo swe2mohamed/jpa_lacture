@@ -1,7 +1,9 @@
 package com.example.jpa_lacture;
 
 
+import com.example.jpa_lacture.entity.Address;
 import com.example.jpa_lacture.entity.Student;
+import com.example.jpa_lacture.repository.AddressRepository;
 import com.example.jpa_lacture.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,9 +15,20 @@ public class MyCommandLineRunner implements CommandLineRunner {
     @Autowired
     StudentRepository studentRepository;
 
+    @Autowired
+    AddressRepository addressRepository;
+
+
 
     @Override
     public void run(String... args) throws Exception {
-        studentRepository.save(new Student("Mohamed", "Hussein", "mohamed@gmail.com"));
+        /*Address address = new Address("Test Street", "Test City", "123zip");
+        Address addressSave = addressRepository.save(address);
+         */
+        // we start save address first
+        Address address_1 = addressRepository.save(new Address("Test Street", "Test City", "123zip"));
+        //  then we save address in the student.
+        Student student_1 = studentRepository.save(new Student("Mohamed", "Hussein", "mohamed@gmail.com",address_1));
+
     }
 }
