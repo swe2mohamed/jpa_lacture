@@ -33,6 +33,12 @@ public class Student {
     @Column
     private LocalDateTime createDate;
 
+
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    @Setter private Address address;
+
+
     public Student(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;

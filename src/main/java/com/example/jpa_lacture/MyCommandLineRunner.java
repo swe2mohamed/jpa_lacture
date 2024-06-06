@@ -13,6 +13,7 @@ public class MyCommandLineRunner implements CommandLineRunner {
     @Autowired
     StudentRepository studentRepository;
 
+
     @Override
     public void run(String... args) throws Exception {
         studentRepository.save(new Student("Mohamed", "Hussein", "mohamed@gmail.com"));
