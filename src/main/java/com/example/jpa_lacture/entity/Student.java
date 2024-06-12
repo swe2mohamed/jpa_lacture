@@ -14,18 +14,21 @@ import java.time.LocalDateTime;
 @Entity
 public class Student {
     @Id
-    //@GeneratedValue (strategy = GenerationType.IDENTITY)
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(updatable = false)
     private String id;
 
+    @Setter
     @Column(nullable = false, length = 100)
-    @Setter private String firstName;
+    private String firstName;
 
+    @Setter
     @Column(nullable = false, length = 100)
-    @Setter private String lastName;
+    private String lastName;
 
+    @Setter
     @Column(nullable = false, unique = true)
-    @Setter private String email;
+    private String email;
 
     @Column
     private boolean status;
@@ -34,9 +37,26 @@ public class Student {
     private LocalDateTime createDate;
 
 
-    @OneToOne
+    // The '@OneToOne' annotation is used to specify a one-to-one relationship between two entities.
+
+    // The 'cascade' attribute is used to propagate all operations (e.g., persist, remove) from the parent entity (Student) to the associated entity (Address).
+    // 'CascadeType.ALL' means all operations will be cascaded.
+
+    // The 'fetch' attribute specifies the fetching strategy for the associated entity.
+    // 'FetchType.EAGER' means the Address entity will be loaded immediately with the Student entity, rather than lazily on demand.
+
+    // The '@JoinColumn' annotation is used to specify the column that joins the two tables.
+    // The name attribute defines the name of the foreign key column in the Student table that references the primary key of the Address table.
+
+    @Setter
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "address_id")
-    @Setter private Address address;
+    private Address address;
+
+    @Setter
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "course_id")
+    private Course course;
 
 
     public Student(String firstName, String lastName, String email) {

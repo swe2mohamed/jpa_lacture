@@ -22,12 +22,7 @@ public class MyCommandLineRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        /*Address address = new Address("Test Street", "Test City", "123zip");
-        Address addressSave = addressRepository.save(address);
-         */
-        // we start save address first
-        Address address_1 = addressRepository.save(new Address("Test Street", "Test City", "123zip"));
-        //  then we save address in the student.
+        Address address_1 = new Address("Test Street", "Test City", "123zip");
         Student student_1 = studentRepository.save(new Student("Mohamed", "Hussein", "mohamed@gmail.com",address_1));
 
     }
